@@ -1,17 +1,68 @@
 import { Store } from '../core/core'
 
-const store = new Store({
+interface State {
+  searchText: string
+  page: number
+  pageMax: number
+  movies: SimpleMovie[]
+  movie: MovieDetail
+  loading: boolean
+  message: string
+}
+
+export interface SimpleMovie {
+  Title: string
+  Year: string
+  imdbID: string
+  Type: string
+  Poster: string
+}
+
+interface MovieDetail {
+  Title: string
+  Year: string
+  Rated: string
+  Released: string
+  Runtime: string
+  Genre: string
+  Director: string
+  Writer: string
+  Actors: string
+  Plot: string
+  Language: string
+  Country: string
+  Awards: string
+  Poster: string
+  Ratings: Rating[]
+  Metascore: string
+  imdbRating: string
+  imdbVotes: string
+  imdbID: string
+  Type: string
+  DVD: string
+  BoxOffice: string
+  Production: string
+  Website: string
+  Response: string
+}
+
+interface Rating {
+  Source: string
+  Value: string
+}
+
+const store = new Store<State>({
   searchText: '',
   page: 1,
   pageMax: 1,
   movies: [],
-  movie: {},
+  movie: {} as MovieDetail,
   loading: false,
   message: 'Search for the movie title!',
 })
 
 export default store
-export const searchMovies = async (page) => {
+export const searchMovies = async (page: number) => {
   store.state.loading = true
   store.state.page = page
   if (page === 1) {
@@ -42,7 +93,7 @@ export const searchMovies = async (page) => {
   }
 }
 
-export const getMovieDetails = async (id) => {
+export const getMovieDetails = async (id: string) => {
   try {
     const res = await fetch(`/api/movie`, {
       method: 'POST',
