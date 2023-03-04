@@ -4,18 +4,24 @@
   "description": "",
   "scripts": {
     "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html"
+    "build": "parcel build ./index.html",
+    "vercel": "vercel dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "parcel": "^2.8.3",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "vercel": "^28.16.12"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
   }
 }
